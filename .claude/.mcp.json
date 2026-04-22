@@ -4,7 +4,7 @@
       "command": "node",
       "args": ["D:\\003.MyApps\\claude_test\\mcp-shrimp-task-manager\\dist\\index.js"],
       "env": {
-        "DATA_DIR": "D:\\003.MyApps\\claude_test\\mcp-shrimp-task-manager\\shrimp_data",
+        "DATA_DIR": "D:\\003.MyApps\\claude_test\\nextjs-supabase-test\\.claude\\shrimp_data",
         "TEMPLATES_USE": "en",
         "ENABLE_GUI": "true"
       }
