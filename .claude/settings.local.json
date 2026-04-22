@@ -1,0 +1,6 @@
+{
+  "enabledMcpjsonServers": [
+    "shrimp-task-manager"
+  ],
+  "enableAllProjectMcpServers": true
+}

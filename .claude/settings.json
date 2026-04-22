@@ -1,0 +1,31 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "statusMessage": "ESLint 검사 중...",
+            "command": "$f = ($input | ConvertFrom-Json).tool_input.file_path; if ($f -match '\\.(ts|tsx|js|jsx)$') { npm run lint -- --quiet 2>&1 | Select-Object -Last 10 } else { exit 0 }",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "statusMessage": ".env 파일 보호 확인 중...",
+            "command": "$cmd = ($input | ConvertFrom-Json).tool_input.command; if ($cmd -match '\\.env' -and $cmd -match 'git (add|commit)') { Write-Output '{\"continue\": false, \"stopReason\": \".env 파일을 git에 포함하려는 명령어가 감지되었습니다. Supabase 키 노출 위험이 있습니다.\"}' } else { exit 0 }"
+          }
+        ]
+      }
+    ]
+  }
+}
